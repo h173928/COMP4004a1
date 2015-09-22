@@ -7,7 +7,10 @@ public class Test_Suite1 {
 
 	@Test
 	public void test() {
-		fail("Not yet implemented");
+		//Deck d = new Deck();
+		Card c = new Card("Diamond", 1);
+		System.out.println(c.toString());
+		assertEquals("TwoDiamond", c.toString());//testing Card class;
 	}
 
 }
