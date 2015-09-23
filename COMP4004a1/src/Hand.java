@@ -17,7 +17,14 @@ public class Hand {
 		for(int i = 0; i < 5; i++){
 			determines.add(cards.get(i).getRank());
 		}
-		pair();
+		if(pair()){
+			
+		}else{
+			for(int i = 0; i < cards.size(); i++){
+				determines.add(cards.get(i).getRank());
+			}
+			hand = 10;
+		}
 	}
 	public void sort(){//sort from large to small
 		ArrayDeque c = new ArrayDeque<Card>();
@@ -44,7 +51,7 @@ public class Hand {
 		}
 		return;
 	}
-	public void pair(){
+	public boolean pair(){
 
 		for(int i = 0; i < 4; i++){
 			for(int j = i + 1; j < 5; j++){
@@ -52,9 +59,9 @@ public class Hand {
 
 					//populate determines array full
 					if(twoPairs()){
-						return;
+						return true;
 					} else if(threeOfAKind()){
-						return;
+						return true;
 					}
 
 					determines = new ArrayList<Integer>();
@@ -68,11 +75,11 @@ public class Hand {
 					}
 					
 					sortDet(c);
-					return;
+					return true;
 				}
 			}
 		}
-		return;
+		return false;
 	}
 	
 

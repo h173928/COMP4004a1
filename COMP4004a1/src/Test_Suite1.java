@@ -23,15 +23,17 @@ public class Test_Suite1 {
 	@Test
 	public void testHand(){
 		//tests splitting input string into id and cards and sort from largest to smallest
+		//also test high hand case
 		Hand hand = new Hand("DY AceHearts TwoDiamonds ThreeSpades FourClubs FiveHearts");
 		System.out.println(hand.cards);
-		assertEquals("AceHearts", hand.cards.get(0).toString());
-		assertEquals("TwoDiamonds", hand.cards.get(4).toString());
-		assertEquals("ThreeSpades", hand.cards.get(3).toString());
-		assertEquals("FourClubs", hand.cards.get(2).toString());
-		assertEquals("FiveHearts", hand.cards.get(1).toString());
+
+		int[] x = {14, 5, 4, 3, 2};
+		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals("DY", hand.id);
+
+		assertEquals(10, hand.hand);
 	}
+
 	@Test
 	public void testPair(){
 		//tests pair function
