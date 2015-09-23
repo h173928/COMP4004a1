@@ -20,12 +20,14 @@ public class Test_Suite1 {
 	
 	@Test
 	public void testHand(){
+		//tests splitting input string into id and cards and sort from largest to smallest
 		Hand hand = new Hand("DY AceHearts TwoDiamonds ThreeSpades FourClubs FiveHearts");
-		assertEquals("AceHearts", hand.cards[0].toString());
-		assertEquals("TwoDiamonds", hand.cards[1].toString());
-		assertEquals("ThreeSpades", hand.cards[2].toString());
-		assertEquals("FourClubs", hand.cards[3].toString());
-		assertEquals("FiveHearts", hand.cards[4].toString());
+		System.out.println(hand.cards);
+		assertEquals("AceHearts", hand.cards.get(0).toString());
+		assertEquals("TwoDiamonds", hand.cards.get(4).toString());
+		assertEquals("ThreeSpades", hand.cards.get(3).toString());
+		assertEquals("FourClubs", hand.cards.get(2).toString());
+		assertEquals("FiveHearts", hand.cards.get(1).toString());
 		assertEquals("DY", hand.id);
 	}
 	/*@Test
