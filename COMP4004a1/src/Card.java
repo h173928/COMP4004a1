@@ -32,7 +32,6 @@ public class Card {
 		}*/
 		for(int i=s.length()-1; i>=0; i--) {
 	        if(Character.isUpperCase(s.charAt(i))) {
-	        	System.out.println(i);
 	            rank = s.substring(0, i);
 	            suit = s.substring(i, s.length());
 	            break;

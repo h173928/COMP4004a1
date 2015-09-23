@@ -18,6 +18,16 @@ public class Test_Suite1 {
 		assertEquals("Diamond", c.suit);//testing Card class;
 	}
 	
+	@Test
+	public void testHand(){
+		Hand hand = new Hand("DY AceHearts TwoDiamonds ThreeSpades FourClubs FiveHearts");
+		assertEquals("AceHearts", hand.cards[0].toString());
+		assertEquals("TwoDiamonds", hand.cards[1].toString());
+		assertEquals("ThreeSpades", hand.cards[2].toString());
+		assertEquals("FourClubs", hand.cards[3].toString());
+		assertEquals("FiveHearts", hand.cards[4].toString());
+		assertEquals("DY", hand.id);
+	}
 	/*@Test
 	public void testDeck(){
 		Deck d = new Deck();
