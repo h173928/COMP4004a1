@@ -1,5 +1,7 @@
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -29,6 +31,23 @@ public class Test_Suite1 {
 		assertEquals("FourClubs", hand.cards.get(2).toString());
 		assertEquals("FiveHearts", hand.cards.get(1).toString());
 		assertEquals("DY", hand.id);
+	}
+	@Test
+	public void testPair(){
+		//tests splitting input string into id and cards and sort from largest to smallest
+
+		int[] x = {14, 5, 4, 3};
+		Hand hand = new Hand("DY AceHearts AceDiamonds ThreeSpades FourClubs FiveHearts");
+		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
+		assertEquals(9, hand.hand);
+		assertEquals(Arrays.toString(x), Arrays.toString(y));
+		System.out.println(Arrays.toString(y));
+
+		hand = new Hand("DY ThreeSpades AceDiamonds FourClubs AceHearts FiveHearts");
+		y = hand.determines.toArray(new Integer[hand.determines.size()]);
+		assertEquals(9, hand.hand);
+		assertEquals(Arrays.toString(x), Arrays.toString(y));
+		System.out.println(Arrays.toString(y));
 	}
 	/*@Test
 	public void testDeck(){
