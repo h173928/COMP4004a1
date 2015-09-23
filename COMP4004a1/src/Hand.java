@@ -49,9 +49,6 @@ public class Hand {
 		for(int i = 0; i < 4; i++){
 			for(int j = i + 1; j < 5; j++){
 				if (cards.get(i).getRank() == cards.get(j).getRank()){
-					determines = new ArrayList<Integer>();
-					hand = 9;
-					determines.add(cards.get(i).getRank());
 
 					//populate determines array full
 					if(twoPairs()){
@@ -59,6 +56,10 @@ public class Hand {
 					} else if(threeOfAKind()){
 						return;
 					}
+
+					determines = new ArrayList<Integer>();
+					hand = 9;
+					determines.add(cards.get(i).getRank());
 					ArrayList<Card> c = new ArrayList<Card>(5);
 					for(int k = 0; k < 5; k++){
 						if(cards.get(k).getRank() != determines.get(0)){
@@ -80,6 +81,12 @@ public class Hand {
 			for(int j = i + 1; j < 4; j++){//since cards are sorted by rank, they should be one after another
 				if (cards.get(i).getRank() == cards.get(j).getRank() && 
 						cards.get(i).getRank() == cards.get(j + 1).getRank()){
+					
+					if(fourOfAKind()){
+						return true;
+					}else if(fullHouse()){
+						return true;
+					}
 					determines = new ArrayList<Integer>();
 					hand = 7;
 					determines.add(cards.get(i).getRank());
@@ -97,6 +104,56 @@ public class Hand {
 			}
 		}
 		return false;
+	}
+	
+	public boolean fourOfAKind(){
+		for(int i = 0; i < 4; i++){
+			for(int j = i + 1; j < 3; j++){//since cards are sorted by rank, they should be one after another
+				if (cards.get(i).getRank() == cards.get(j).getRank() && 
+						cards.get(i).getRank() == cards.get(j + 1).getRank()){
+					
+					
+					determines = new ArrayList<Integer>();
+					hand = 3;
+					determines.add(cards.get(i).getRank());
+
+					//populate determines array full no need to call sortDet since only one lone card
+					for(int k = 0; k < 5; k++){
+						if(cards.get(k).getRank() != determines.get(0)){
+							determines.add(cards.get(k).getRank());
+						}
+					}
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	public boolean fullHouse(){
+		return false;
+		/*for(int i = 0; i < 4; i++){
+			for(int j = i + 1; j < 4; j++){//since cards are sorted by rank, they should be one after another
+				if (cards.get(i).getRank() == cards.get(j).getRank() && 
+						cards.get(i).getRank() == cards.get(j + 1).getRank()){
+					
+					
+					determines = new ArrayList<Integer>();
+					hand = 7;
+					determines.add(cards.get(i).getRank());
+
+					//populate determines array full
+					ArrayList<Card> c = new ArrayList<Card>(5);
+					for(int k = 0; k < 5; k++){
+						if(cards.get(k).getRank() != determines.get(0)){
+							c.add(cards.get(k));
+						}
+					}
+					sortDet(c);
+					return true;
+				}
+			}
+		}
+		return false;*/
 	}
 	public boolean twoPairs(){
 		return false;

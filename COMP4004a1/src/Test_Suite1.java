@@ -68,6 +68,25 @@ public class Test_Suite1 {
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
 		System.out.println(Arrays.toString(y));
 	}
+
+	@Test
+	public void testFourOfAKind(){
+		//tests threeOfAKind function
+
+		int[] x = {3, 14};
+		Hand hand = new Hand("DY ThreeHearts AceDiamonds ThreeSpades ThreeClubs ThreeHearts");
+		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
+		assertEquals(3, hand.hand);
+		assertEquals(Arrays.toString(x), Arrays.toString(y));
+		System.out.println(Arrays.toString(y));
+		
+		x = new int[] {2, 3};
+		hand = new Hand("DY ThreeHearts TwoDiamonds TwoSpades TwoClubs TwoHearts");
+		y = hand.determines.toArray(new Integer[hand.determines.size()]);
+		assertEquals(3, hand.hand);
+		assertEquals(Arrays.toString(x), Arrays.toString(y));
+		System.out.println(Arrays.toString(y));
+	}
 	/*@Test
 	public void testDeck(){
 		Deck d = new Deck();
