@@ -2,8 +2,8 @@
 public class Card {
 	String rank;
 	String suit;
-	Card(String s, int n){
-		if(n == 0){
+	Card(String s){
+		/*if(n == 0){
 			rank = "Ace";
 		}else if(n == 1){
 			rank = "Two";
@@ -29,8 +29,15 @@ public class Card {
 			rank = "Queen";
 		}else if(n == 12){
 			rank = "King";
-		}
-		suit = s;
+		}*/
+		for(int i=s.length()-1; i>=0; i--) {
+	        if(Character.isUpperCase(s.charAt(i))) {
+	        	System.out.println(i);
+	            rank = s.substring(0, i);
+	            suit = s.substring(i, s.length());
+	            break;
+	        }
+	    }
 	}
 	public String toString(){
 		return rank + suit;
