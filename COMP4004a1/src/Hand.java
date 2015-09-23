@@ -44,9 +44,63 @@ public class Hand {
 		}
 		return;
 	}
-	public boolean pair(){
+	public void pair(){
 
 		for(int i = 0; i < 4; i++){
+			for(int j = i + 1; j < 5; j++){
+				if (cards.get(i).getRank() == cards.get(j).getRank()){
+					determines = new ArrayList<Integer>();
+					hand = 9;
+					determines.add(cards.get(i).getRank());
+
+					//populate determines array full
+					if(twoPairs()){
+						return;
+					} else if(threeOfAKind()){
+						return;
+					}
+					ArrayList<Card> c = new ArrayList<Card>(5);
+					for(int k = 0; k < 5; k++){
+						if(cards.get(k).getRank() != determines.get(0)){
+							c.add(cards.get(k));
+						}
+					}
+					
+					sortDet(c);
+					return;
+				}
+			}
+		}
+		return;
+	}
+	
+
+	public boolean threeOfAKind(){
+		for(int i = 0; i < 4; i++){
+			for(int j = i + 1; j < 4; j++){//since cards are sorted by rank, they should be one after another
+				if (cards.get(i).getRank() == cards.get(j).getRank() && 
+						cards.get(i).getRank() == cards.get(j + 1).getRank()){
+					determines = new ArrayList<Integer>();
+					hand = 7;
+					determines.add(cards.get(i).getRank());
+
+					//populate determines array full
+					ArrayList<Card> c = new ArrayList<Card>(5);
+					for(int k = 0; k < 5; k++){
+						if(cards.get(k).getRank() != determines.get(0)){
+							c.add(cards.get(k));
+						}
+					}
+					sortDet(c);
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+	public boolean twoPairs(){
+		return false;
+		/*for(int i = 0; i < 4; i++){
 			for(int j = i + 1; j < 5; j++){
 				if (cards.get(i).getRank() == cards.get(j).getRank()){
 					determines = new ArrayList<Integer>();
@@ -65,8 +119,9 @@ public class Hand {
 				}
 			}
 		}
-		return false;
+		return false;*/
 	}
+	
 	//for sorting determine ranks by what is looked at first for 1 pair and three of a kind
 	public void sortDet(ArrayList<Card> c){
 		while(c.size() != 1){

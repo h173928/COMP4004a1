@@ -34,7 +34,7 @@ public class Test_Suite1 {
 	}
 	@Test
 	public void testPair(){
-		//tests splitting input string into id and cards and sort from largest to smallest
+		//tests pair function
 
 		int[] x = {14, 5, 4, 3};
 		Hand hand = new Hand("DY AceHearts AceDiamonds ThreeSpades FourClubs FiveHearts");
@@ -46,6 +46,25 @@ public class Test_Suite1 {
 		hand = new Hand("DY ThreeSpades AceDiamonds FourClubs AceHearts FiveHearts");
 		y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(9, hand.hand);
+		assertEquals(Arrays.toString(x), Arrays.toString(y));
+		System.out.println(Arrays.toString(y));
+	}
+
+	@Test
+	public void testThreeOfAKind(){
+		//tests threeOfAKind function
+
+		int[] x = {3, 14, 5};
+		Hand hand = new Hand("DY ThreeHearts FiveDiamonds ThreeSpades ThreeClubs AceHearts");
+		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
+		assertEquals(7, hand.hand);
+		assertEquals(Arrays.toString(x), Arrays.toString(y));
+		System.out.println(Arrays.toString(y));
+		
+		x = new int[] {10, 12, 11};
+		hand = new Hand("DY TenHearts JackDiamonds TenSpades TenClubs QueenHearts");
+		y = hand.determines.toArray(new Integer[hand.determines.size()]);
+		assertEquals(7, hand.hand);
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
 		System.out.println(Arrays.toString(y));
 	}
