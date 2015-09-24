@@ -1,9 +1,6 @@
 import static org.junit.Assert.*;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.junit.Test;
 
@@ -30,7 +27,7 @@ public class Test_Suite1 {
 		int[] x = {14, 5, 4, 3, 2};
 		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals("DY", hand.id);
-
+		assertEquals(Arrays.toString(x), Arrays.toString(y));
 		assertEquals(10, hand.hand);
 	}
 

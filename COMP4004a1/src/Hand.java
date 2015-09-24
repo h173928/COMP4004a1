@@ -14,9 +14,6 @@ public class Hand {
 			cards.add(new Card(elements[i]));
 		}
 		sort();
-		for(int i = 0; i < 5; i++){
-			determines.add(cards.get(i).getRank());
-		}
 		if(pair()){
 			
 		}else{
