@@ -124,6 +124,25 @@ public class Test_Suite1 {
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
 		System.out.println(Arrays.toString(y));
 	}
+	
+	@Test
+	public void testFlush(){
+		//tests pair function
+
+		int[] x = {14, 13, 10, 8, 2};
+		Hand hand = new Hand("DY TwoDiamonds EightDiamonds TenDiamonds KingDiamonds AceDiamonds");
+		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
+		assertEquals(5, hand.hand);
+		assertEquals(Arrays.toString(x), Arrays.toString(y));
+		System.out.println(Arrays.toString(y));
+
+		x = new int[] {13, 11, 10, 8, 6};
+		hand = new Hand("DY KingHearts SixHearts TenHearts JackHearts EightHearts");
+		y = hand.determines.toArray(new Integer[hand.determines.size()]);
+		assertEquals(5, hand.hand);
+		assertEquals(Arrays.toString(x), Arrays.toString(y));
+		System.out.println(Arrays.toString(y));
+	}
 	/*@Test
 	public void testDeck(){
 		Deck d = new Deck();

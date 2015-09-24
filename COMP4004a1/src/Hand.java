@@ -16,7 +16,11 @@ public class Hand {
 		sort();
 		if(pair()){
 			
-		}else{
+		}
+		else if(flush()){
+			
+		}
+		else{
 			for(int i = 0; i < cards.size(); i++){
 				determines.add(cards.get(i).getRank());
 			}
@@ -53,7 +57,6 @@ public class Hand {
 		for(int i = 0; i < 4; i++){
 			for(int j = i + 1; j < 5; j++){
 				if (cards.get(i).getRank() == cards.get(j).getRank()){
-
 					determines = new ArrayList<Integer>();
 					hand = 9;
 					determines.add(cards.get(i).getRank());
@@ -166,5 +169,26 @@ public class Hand {
 		return false;
 	}
 	
+	public boolean flush(){
+		for(int i = 0 ; i < cards.size() - 1; i++){
+			if(!cards.get(i).suit.equals(cards.get(i + 1).suit)){
+				return false;
+			}
+		}
+		//means it is a flush hand
+		determines = new ArrayList<Integer>();
+		hand = 5;
+		for(int i = 0; i < cards.size(); i++){
+			determines.add(cards.get(i).getRank());
+		}
+		return true;
+	}
 
 }
+
+
+
+
+
+
+
