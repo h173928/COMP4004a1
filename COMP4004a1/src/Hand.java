@@ -201,7 +201,6 @@ public class Hand {
 
 		determines = new ArrayList<Integer>();		
 		if(cards.get(4).getRank() == 2 && cards.get(0).getRank() == 14){//if 54321
-			System.out.println("here");
 			determines.add(cards.get(1).getRank());			
 		} else {
 			determines.add(cards.get(0).getRank());
