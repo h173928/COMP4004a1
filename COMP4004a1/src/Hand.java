@@ -16,6 +16,8 @@ public class Hand {
 		sort();
 		if(pair()){
 			
+		}else if(straight()){
+			
 		}
 		else if(flush()){
 			
@@ -184,6 +186,24 @@ public class Hand {
 		return true;
 	}
 
+	public boolean straight(){
+		for(int i = 0; i < cards.size() - 1; i++){
+			if(cards.get(i).getRank() != cards.get(i + 1).getRank() + 1 &&
+					cards.get(i).getRank() != 14 && cards.get(i).getRank() != 5){
+				//if cards are not consecutive and first card is not Ace and second card not 5 for a 54321
+				return false;
+			}
+		}
+		//it is a straight
+		determines = new ArrayList<Integer>();
+		hand = 6;
+		if(cards.get(4).getRank() == 2){//if 54321
+			determines.add(cards.get(1).getRank());
+		} else {
+			determines.add(cards.get(0).getRank());
+		}
+		return true;
+	}
 }
 
 

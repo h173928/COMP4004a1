@@ -21,10 +21,10 @@ public class Test_Suite1 {
 	public void testHand(){
 		//tests splitting input string into id and cards and sort from largest to smallest
 		//also test high card case
-		Hand hand = new Hand("DY AceHearts TwoDiamonds ThreeSpades FourClubs FiveHearts");
+		Hand hand = new Hand("DY AceHearts TwoDiamonds ThreeSpades FourClubs SixHearts");
 		System.out.println(hand.cards);
 
-		int[] x = {14, 5, 4, 3, 2};
+		int[] x = {14, 6, 4, 3, 2};
 		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals("DY", hand.id);
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
@@ -140,6 +140,24 @@ public class Test_Suite1 {
 		hand = new Hand("DY KingHearts SixHearts TenHearts JackHearts EightHearts");
 		y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(5, hand.hand);
+		assertEquals(Arrays.toString(x), Arrays.toString(y));
+		System.out.println(Arrays.toString(y));
+	}
+	@Test
+	public void testStraight(){
+		//tests pair function
+
+		int[] x = {5};
+		Hand hand = new Hand("DY TwoDiamonds FiveDiamonds AceHearts ThreeDiamonds FourDiamonds");
+		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
+		assertEquals(6, hand.hand);
+		assertEquals(Arrays.toString(x), Arrays.toString(y));
+		System.out.println(Arrays.toString(y));
+
+		x = new int[] {14};
+		hand = new Hand("DY KingClubs TenHearts QueenHearts JackHearts AceHearts");
+		y = hand.determines.toArray(new Integer[hand.determines.size()]);
+		assertEquals(6, hand.hand);
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
 		System.out.println(Arrays.toString(y));
 	}
