@@ -68,11 +68,10 @@ public class Hand {
 					ArrayList<Card> c = new ArrayList<Card>(5);
 					for(int k = 0; k < 5; k++){
 						if(cards.get(k).getRank() != determines.get(0)){
-							c.add(cards.get(k));
+							determines.add(cards.get(k).getRank());
 						}
 					}
 					
-					sortDet(c);
 					return true;
 				}
 			}
@@ -100,10 +99,9 @@ public class Hand {
 					ArrayList<Card> c = new ArrayList<Card>(5);
 					for(int k = 0; k < 5; k++){
 						if(cards.get(k).getRank() != determines.get(0)){
-							c.add(cards.get(k));
+							determines.add(cards.get(k).getRank());
 						}
 					}
-					sortDet(c);
 					return true;
 				}
 			}
@@ -167,7 +165,6 @@ public class Hand {
 							determines.add(c.get(k).getRank());
 						}
 					}
-					//sortDet(h);
 					return true;
 				}
 			}
@@ -175,22 +172,5 @@ public class Hand {
 		return false;
 	}
 	
-	//for sorting determine ranks by what is looked at first for 1 pair and three of a kind
-	public void sortDet(ArrayList<Card> c){
-		while(c.size() != 1){
-			int i = 0;
-			for(int j = 1; j < c.size(); j++){
-				if (c.get(i).getRank() < c.get(j).getRank()){
-					i = j;
-				}
-				if (j == c.size() - 1){
-					determines.add(c.get(i).getRank());
-					c.remove(i);
-				}
-			}
-		}
-		//add the last cart
-		determines.add(c.get(0).getRank());
-		return;
-	}
+
 }
