@@ -20,7 +20,7 @@ public class Test_Suite1 {
 	@Test
 	public void testHand(){
 		//tests splitting input string into id and cards and sort from largest to smallest
-		//also test high hand case
+		//also test high card case
 		Hand hand = new Hand("DY AceHearts TwoDiamonds ThreeSpades FourClubs FiveHearts");
 		System.out.println(hand.cards);
 
