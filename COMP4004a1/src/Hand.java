@@ -6,7 +6,7 @@ public class Hand {
 	ArrayList<Card> cards = new ArrayList<Card>(5);
 	//Card[] cards = new Card[5];
 	ArrayList<Integer> determines = new ArrayList<Integer>();//determines winner when two hands are similar ie. two flushes
-	int hand; //Royal flush is 1, straight flush is 2 and so on
+	private int hand; //Royal flush is 1, straight flush is 2 and so on
 	Hand(String s){
 		String[] elements = s.split(" ");
 		id = elements[0];
@@ -222,6 +222,9 @@ public class Hand {
 			out += cards.get(i).suit;
 		}
 		return out;
+	}
+	public int getHand(){
+		return hand;
 	}
 }
 
