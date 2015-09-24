@@ -186,7 +186,7 @@ public class Hand {
 		return true;
 	}
 
-	public boolean straight(){
+	public boolean straight(){//checks all straight cases, including straight flush and royal flush
 		for(int i = 0; i < cards.size() - 1; i++){
 			if(cards.get(i).getRank() != cards.get(i + 1).getRank() + 1 &&
 					cards.get(i).getRank() != 14 && cards.get(i).getRank() != 5){
@@ -195,12 +195,22 @@ public class Hand {
 			}
 		}
 		//it is a straight
-		determines = new ArrayList<Integer>();
-		hand = 6;
-		if(cards.get(4).getRank() == 2){//if 54321
-			determines.add(cards.get(1).getRank());
+		if(!flush()){//if not straight flush
+			hand = 6;
+		}
+
+		determines = new ArrayList<Integer>();		
+		if(cards.get(4).getRank() == 2 && cards.get(0).getRank() == 14){//if 54321
+			System.out.println("here");
+			determines.add(cards.get(1).getRank());			
 		} else {
 			determines.add(cards.get(0).getRank());
+		}
+		//check for royal flush
+		if(determines.get(0) == 14 && hand != 6){
+			hand = 1;
+		}else if(hand != 6){
+			hand = 2;
 		}
 		return true;
 	}
