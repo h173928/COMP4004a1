@@ -1,5 +1,6 @@
 import java.util.ArrayDeque;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class Hand {
 	String id;
@@ -57,16 +58,13 @@ public class Hand {
 			for(int j = i + 1; j < 5; j++){
 				if (cards.get(i).getRank() == cards.get(j).getRank()){
 
-					//populate determines array full
-					if(twoPairs()){
-						return true;
-					} else if(threeOfAKind()){
-						return true;
-					}
-
 					determines = new ArrayList<Integer>();
 					hand = 9;
 					determines.add(cards.get(i).getRank());
+					//populate determines array full
+					if(twoPairs()){
+						return true;
+					} 
 					ArrayList<Card> c = new ArrayList<Card>(5);
 					for(int k = 0; k < 5; k++){
 						if(cards.get(k).getRank() != determines.get(0)){
@@ -144,27 +142,37 @@ public class Hand {
 		return false;
 	}
 	public boolean twoPairs(){
-		return false;
-		/*for(int i = 0; i < 4; i++){
-			for(int j = i + 1; j < 5; j++){
-				if (cards.get(i).getRank() == cards.get(j).getRank()){
-					determines = new ArrayList<Integer>();
-					hand = 9;
-					determines.add(cards.get(i).getRank());
-
+		ArrayList<Card> c = new ArrayList<Card>();
+		for(int i = 0; i < cards.size(); i++){
+			if(cards.get(i).getRank() != determines.get(0)){
+				c.add(cards.get(i));
+			}
+		}
+		if(c.size() < 3){//three of a kind or above
+			threeOfAKind();
+			return true;
+		}
+		for(int i = 0; i < 2; i++){
+			for(int j = i + 1; j < 3; j++){
+				if (c.get(i).getRank() == c.get(j).getRank()){
+					hand = 8;
+					determines.add(c.get(i).getRank());
+					if(threeOfAKind()){
+						return true;
+					}
 					//populate determines array full
-					ArrayList<Card> c = new ArrayList<Card>(5);
-					for(int k = 0; k < 5; k++){
-						if(cards.get(k).getRank() != determines.get(0)){
-							c.add(cards.get(k));
+					ArrayList<Card> h = new ArrayList<Card>();
+					for(int k = 0; k < 3; k++){
+						if(c.get(k).getRank() != determines.get(1)){
+							determines.add(c.get(k).getRank());
 						}
 					}
-					sortDet(c);
+					//sortDet(h);
 					return true;
 				}
 			}
 		}
-		return false;*/
+		return false;
 	}
 	
 	//for sorting determine ranks by what is looked at first for 1 pair and three of a kind
