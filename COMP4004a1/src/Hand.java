@@ -213,6 +213,16 @@ public class Hand {
 		}
 		return true;
 	}
+	public String toString(){
+		String out;
+		out = id;
+		for(int i = 0; i < cards.size(); i++){
+			out += " ";
+			out += cards.get(i).rank;
+			out += cards.get(i).suit;
+		}
+		return out;
+	}
 }
 
 

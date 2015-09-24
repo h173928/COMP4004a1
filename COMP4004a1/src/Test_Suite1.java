@@ -32,6 +32,17 @@ public class Test_Suite1 {
 	}
 
 	@Test
+	public void testHandToString(){
+		//tests the toString function in Hand
+		Hand hand = new Hand("DY AceHearts TwoDiamonds ThreeSpades FourClubs SixHearts");
+		assertEquals("DY AceHearts SixHearts FourClubs ThreeSpades TwoDiamonds", hand.toString());
+		
+		hand = new Hand("Din AceSpades TwoDiamonds TwoClubs KingHearts KingHearts");
+		assertEquals("Din AceSpades KingHearts KingHearts TwoDiamonds TwoClubs", hand.toString());
+		
+	}
+	
+	@Test
 	public void testPair(){
 		//tests pair function
 
@@ -180,6 +191,13 @@ public class Test_Suite1 {
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
 		System.out.println(Arrays.toString(y));
 	}
+
+	/*@Test
+	public void testGame(){
+		Game g = new Game();
+		g.addPlayer("Din KingHearts TenHearts QueenHearts JackHearts AceHearts");
+		g.addPlayer("DY TwoDiamonds FiveDiamonds AceDiamonds ThreeDiamonds FourDiamonds");
+	}*/
 	/*@Test
 	public void testDeck(){
 		Deck d = new Deck();
