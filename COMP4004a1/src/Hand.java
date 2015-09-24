@@ -1,6 +1,5 @@
 import java.util.ArrayDeque;
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class Hand {
 	String id;
@@ -28,7 +27,7 @@ public class Hand {
 		}
 	}
 	public void sort(){//sort from large to small
-		ArrayDeque c = new ArrayDeque<Card>();
+		ArrayDeque<Card> c = new ArrayDeque<Card>();
 		int size = 5;
 		while(size != 0){
 			int i = 0;
@@ -65,7 +64,7 @@ public class Hand {
 					if(twoPairs()){
 						return true;
 					} 
-					ArrayList<Card> c = new ArrayList<Card>(5);
+					
 					for(int k = 0; k < 5; k++){
 						if(cards.get(k).getRank() != determines.get(0)){
 							determines.add(cards.get(k).getRank());
@@ -96,7 +95,6 @@ public class Hand {
 					hand = 7;
 
 					//populate determines array full
-					ArrayList<Card> c = new ArrayList<Card>(5);
 					for(int k = 0; k < 5; k++){
 						if(cards.get(k).getRank() != determines.get(0)){
 							determines.add(cards.get(k).getRank());
@@ -159,7 +157,6 @@ public class Hand {
 						return true;
 					}
 					//populate determines array full
-					ArrayList<Card> h = new ArrayList<Card>();
 					for(int k = 0; k < 3; k++){
 						if(c.get(k).getRank() != determines.get(1)){
 							determines.add(c.get(k).getRank());
