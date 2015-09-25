@@ -2,8 +2,16 @@ import java.util.ArrayList;
 public class Game {
 	private ArrayList<Hand> players = new ArrayList<Hand>();
 	private int numPlayer;
+	private Input input = new Input();
 	Game(){
-		
+		while(true){
+			numPlayer = input.promptNum();
+			for(int i = 0; i < numPlayer; i++){
+				players.add(new Hand(input.promptplayer(players)));
+			}
+			result();
+			players = new ArrayList<Hand>();
+		}
 	}
 	public void setNum(int n){
 		numPlayer = n;
@@ -12,7 +20,6 @@ public class Game {
 		players.add(new Hand(str));
 	}
 	public void sort(){//sort players by how good their hand is
-		System.out.println("here");
 		ArrayList<Hand> temp = players;
 		players = new ArrayList<Hand>();
 		int x = 0;
@@ -22,20 +29,46 @@ public class Game {
 					x = i;
 				}
 			}
+			
+			//check for ties
+			if(players.size() > 0 && players.get(players.size() - 1).getHand() == temp.get(x).getHand()
+					&& players.get(players.size() - 1).determines.size() == temp.get(x).determines.size()){
+				for(int i = 0; i < temp.get(x).determines.size(); i++){
+					if(players.get(players.size() - 1).determines.get(i) == temp.get(x).determines.get(i)){
+						temp.get(x).rank = players.get(players.size() - 1).rank;
+					} else {
+						temp.get(x).rank = players.size() + 1;
+					}
+				}
+			} else {
+				temp.get(x).rank = players.size() + 1;
+			}
 			players.add(temp.get(x));
 			temp.remove(x);
 			x = 0;
 		}
+		//check for ties
+		if(players.size() > 0 && players.get(players.size() - 1).getHand() == temp.get(0).getHand()
+				&& players.get(players.size() - 1).determines.size() == temp.get(0).determines.size()){
+			for(int i = 0; i < temp.get(0).determines.size(); i++){
+				if(players.get(players.size() - 1).determines.get(i) == temp.get(0).determines.get(i)){
+					temp.get(0).rank = players.get(players.size() - 1).rank;
+				} else {
+					temp.get(0).rank = players.size() + 1;
+				}
+			}
+		} else {
+			temp.get(0).rank = players.size() + 1;
+		}
 		players.add(temp.get(0));
-		System.out.println(temp.size());
 	}
 	public Hand getPlayer(int i){
 		return players.get(i);
 	}
-	/*public void result(){
+	public void result(){
+		sort();
 		for(int i = 0; i < players.size(); i++){
 			System.out.println(players.get(i).toString());
-			System.out.println("Ranked "+ i);
 		}
-	}*/
+	}
 }

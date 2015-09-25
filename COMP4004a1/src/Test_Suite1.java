@@ -1,5 +1,6 @@
 import static org.junit.Assert.*;
 
+import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 import java.util.Arrays;
@@ -11,21 +12,7 @@ import org.junit.Test;
 
 
 public class Test_Suite1 {
-	private final ByteArrayOutputStream outContent = new ByteArrayOutputStream();
-	private final ByteArrayOutputStream errContent = new ByteArrayOutputStream();
 
-	@Before
-	public void setUpStreams() {
-	    System.setOut(new PrintStream(outContent));
-	    System.setErr(new PrintStream(errContent));
-	}
-
-	@After
-	public void cleanUpStreams() {
-	    System.setOut(null);
-	    System.setErr(null);
-	}
-	
 	@Test
 	public void testCard() {
 		
@@ -40,7 +27,7 @@ public class Test_Suite1 {
 		//tests splitting input string into id and cards and sort from largest to smallest
 		//also test high card case
 		Hand hand = new Hand("DY AceHearts TwoDiamonds ThreeSpades FourClubs SixHearts");
-		System.out.println(hand.cards);
+		//System.out.println(hand.cards);
 
 		int[] x = {14, 6, 4, 3, 2};
 		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
@@ -53,10 +40,10 @@ public class Test_Suite1 {
 	public void testHandToString(){
 		//tests the toString function in Hand
 		Hand hand = new Hand("DY AceHearts TwoDiamonds ThreeSpades FourClubs SixHearts");
-		assertEquals("DY AceHearts SixHearts FourClubs ThreeSpades TwoDiamonds", hand.toString());
+		assertEquals("DY AceHearts SixHearts FourClubs ThreeSpades TwoDiamonds Ranked 100", hand.toString());
 		
 		hand = new Hand("Din AceSpades TwoDiamonds TwoClubs KingHearts KingHearts");
-		assertEquals("Din AceSpades KingHearts KingHearts TwoDiamonds TwoClubs", hand.toString());
+		assertEquals("Din AceSpades KingHearts KingHearts TwoDiamonds TwoClubs Ranked 100", hand.toString());
 		
 	}
 	
@@ -69,13 +56,13 @@ public class Test_Suite1 {
 		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(9, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		System.out.println(Arrays.toString(y));
+		//System.out.println(Arrays.toString(y));
 
 		hand = new Hand("DY ThreeSpades AceDiamonds FourClubs AceHearts FiveHearts");
 		y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(9, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		System.out.println(Arrays.toString(y));
+		//System.out.println(Arrays.toString(y));
 	}
 
 	@Test
@@ -87,14 +74,14 @@ public class Test_Suite1 {
 		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(7, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		System.out.println(Arrays.toString(y));
+		//System.out.println(Arrays.toString(y));
 		
 		x = new int[] {10, 12, 11};
 		hand = new Hand("DY TenHearts JackDiamonds TenSpades TenClubs QueenHearts");
 		y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(7, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		System.out.println(Arrays.toString(y));
+		//System.out.println(Arrays.toString(y));
 	}
 
 	@Test
@@ -106,14 +93,14 @@ public class Test_Suite1 {
 		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(3, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		System.out.println(Arrays.toString(y));
+		//System.out.println(Arrays.toString(y));
 		
 		x = new int[] {2};
 		hand = new Hand("DY ThreeHearts TwoDiamonds TwoSpades TwoClubs TwoHearts");
 		y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(3, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		System.out.println(Arrays.toString(y));
+		//System.out.println(Arrays.toString(y));
 	}
 
 	@Test
@@ -125,14 +112,14 @@ public class Test_Suite1 {
 		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(4, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		System.out.println(Arrays.toString(y));
+		//System.out.println(Arrays.toString(y));
 		
 		x = new int[] {2};
 		hand = new Hand("DY ThreeHearts TwoDiamonds ThreeSpades TwoClubs TwoHearts");
 		y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(4, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		System.out.println(Arrays.toString(y));
+		//System.out.println(Arrays.toString(y));
 	}
 	
 	@Test
@@ -144,14 +131,14 @@ public class Test_Suite1 {
 		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(8, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		System.out.println(Arrays.toString(y));
+		//System.out.println(Arrays.toString(y));
 
 		x = new int[] {13, 2, 14};
 		hand = new Hand("DY AceSpades TwoDiamonds TwoClubs KingHearts KingHearts");
 		y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(8, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		System.out.println(Arrays.toString(y));
+		//System.out.println(Arrays.toString(y));
 	}
 	
 	@Test
@@ -163,14 +150,14 @@ public class Test_Suite1 {
 		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(5, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		System.out.println(Arrays.toString(y));
+		//System.out.println(Arrays.toString(y));
 
 		x = new int[] {13, 11, 10, 8, 6};
 		hand = new Hand("DY KingHearts SixHearts TenHearts JackHearts EightHearts");
 		y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(5, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		System.out.println(Arrays.toString(y));
+		//System.out.println(Arrays.toString(y));
 	}
 	@Test
 	public void testStraight(){
@@ -181,14 +168,14 @@ public class Test_Suite1 {
 		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(6, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		System.out.println(Arrays.toString(y));
+		//System.out.println(Arrays.toString(y));
 
 		x = new int[] {14};
 		hand = new Hand("DY KingClubs TenHearts QueenHearts JackHearts AceHearts");
 		y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(6, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		System.out.println(Arrays.toString(y));
+		//System.out.println(Arrays.toString(y));
 	}
 
 	@Test
@@ -200,20 +187,21 @@ public class Test_Suite1 {
 		Integer[] y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(2, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		System.out.println(Arrays.toString(y));
+		//System.out.println(Arrays.toString(y));
 
 		x = new int[] {14};//royal flush
 		hand = new Hand("DY KingHearts TenHearts QueenHearts JackHearts AceHearts");
 		y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(1, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		System.out.println(Arrays.toString(y));
+		//System.out.println(Arrays.toString(y));
+		Game g = new Game();
 	}
-
-	@Test
+	//to run this test, comment out what is in Game:game()*************
+	/*@Test
 	public void testGame(){
 		Game g = new Game();
-		g.addPlayer("James TwoSpades JackHearts AceDiamonds ThreeDiamonds FourDiamonds");
+		g.addPlayer("James TwoSpades JackSpades AceDiamonds ThreeDiamonds FourDiamonds");
 		g.addPlayer("Din KingHearts TenHearts QueenHearts JackHearts AceHearts");
 		g.sort();
 		assertEquals("Din AceHearts KingHearts QueenHearts JackHearts TenHearts" ,g.getPlayer(0).toString());
@@ -223,16 +211,15 @@ public class Test_Suite1 {
 		assertEquals("DY AceDiamonds FiveDiamonds FourDiamonds ThreeDiamonds TwoDiamonds" ,g.getPlayer(1).toString());
 		assertEquals("Din AceHearts KingHearts QueenHearts JackHearts TenHearts" ,g.getPlayer(0).toString());
 		assertEquals("James", g.getPlayer(2).id);
-	}
-	/*@Test
-	public void testDeck(){
-		Deck d = new Deck();
-		Set<String> deck = new HashSet<String>();
-		//hashset only keeps unique values so repeats are ignored
-		for(int i = 0; i < 52; i++){
-			deck.add(d.deck.pop().toString());
-		}
-		System.out.println(deck);
-		assertEquals(52, deck.size(), 0);//make sure all cards are unique
+		
+		g.addPlayer("Philip TwoSpades JackHearts AceDiamonds TwoDiamonds FourDiamonds");
+		g.result();
+		assertEquals("Philip", g.getPlayer(2).id);
+		assertEquals("James", g.getPlayer(3).id);
+		
+		Input x = new Input();
+		x.promptNum();
 	}*/
+	
+
 }

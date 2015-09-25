@@ -3,6 +3,7 @@ import java.util.ArrayList;
 
 public class Hand {
 	String id;
+	int rank = 100;
 	ArrayList<Card> cards = new ArrayList<Card>(5);
 	//Card[] cards = new Card[5];
 	ArrayList<Integer> determines = new ArrayList<Integer>();//determines winner when two hands are similar ie. two flushes
@@ -221,6 +222,8 @@ public class Hand {
 			out += cards.get(i).rank;
 			out += cards.get(i).suit;
 		}
+		out += " Ranked ";
+		out += rank;
 		return out;
 	}
 	public int getHand(){
