@@ -1,4 +1,3 @@
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -9,7 +8,6 @@ public class Input {
 	}
 	public int promptNum(){
 		int n = 1;
-		boolean quit = false;
 	    System.out.println("Please input number of players from 2~4 or quit to exit:");
 	    Scanner in = new Scanner(System.in);
 	    if(in.hasNextInt()){
