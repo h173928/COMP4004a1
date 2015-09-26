@@ -23,13 +23,18 @@ public class Game {
 		ArrayList<Hand> temp = players;
 		players = new ArrayList<Hand>();
 		int x = 0;
-		while(temp.size() > 1){
+		while(temp.size() >= 1){
 			for(int i = 0; i < temp.size(); i++){
 				if(temp.get(x).getHand() > temp.get(i).getHand()){
 					x = i;
+				}else if (temp.get(x).getHand() == temp.get(i).getHand()){
+					for(int j = 0; j < temp.get(x).determines.size(); j++){
+						if(temp.get(x).determines.get(j) < temp.get(i).determines.get(j)){
+							x = i;
+						}
+					}
 				}
 			}
-			
 			//check for ties
 			if(players.size() > 0 && players.get(players.size() - 1).getHand() == temp.get(x).getHand()
 					&& players.get(players.size() - 1).determines.size() == temp.get(x).determines.size()){
@@ -48,6 +53,7 @@ public class Game {
 			x = 0;
 		}
 		//check for ties
+		/*
 		if(players.size() > 0 && players.get(players.size() - 1).getHand() == temp.get(0).getHand()
 				&& players.get(players.size() - 1).determines.size() == temp.get(0).determines.size()){
 			for(int i = 0; i < temp.get(0).determines.size(); i++){
@@ -60,7 +66,7 @@ public class Game {
 		} else {
 			temp.get(0).rank = players.size() + 1;
 		}
-		players.add(temp.get(0));
+		players.add(temp.get(0));*/
 	}
 	public Hand getPlayer(int i){
 		return players.get(i);

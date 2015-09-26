@@ -1,3 +1,4 @@
+import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -8,19 +9,21 @@ public class Input {
 	}
 	public int promptNum(){
 		int n = 1;
-	    System.out.println("Please input number of players from 2~4 or 0 to exit:");
+		boolean quit = false;
+	    System.out.println("Please input number of players from 2~4 or quit to exit:");
 	    Scanner in = new Scanner(System.in);
 	    if(in.hasNextInt()){
 		    n = in.nextInt();
+	    }else if(in.hasNextLine() && in.nextLine().equals("quit")){
+	    	System.exit(0);
 	    }
 	    while(n < 2 || n > 4 ){
-	    	if(n == 0){
-	    		System.exit(0);
-	    	}
-	    	in.nextLine();
 	    	System.out.println("Invalid input, please enter 2~4:");
 		    if(in.hasNextInt()){
 			    n = in.nextInt();
+		    }else if(in.hasNextLine() && in.nextLine().equals("quit")){
+		    	System.out.println("exiting");
+		    	System.exit(0);
 		    }
 	    }
 		return n;
@@ -29,18 +32,15 @@ public class Input {
 	public String promptplayer(ArrayList<Hand> players){
 		boolean valid = false;
 		boolean format = false;
+		boolean idValid = true;
 		String str = null;
 	    Scanner in = new Scanner(System.in);
+		System.out.println("Please enter player information: ");
 		while(valid == false){
-			System.out.println("Please enter player information: ");
 			str = in.nextLine();
 			String[] elements = str.split(" ");
+			idValid = uniqueId(elements, players);
 			if(elements.length == 6){
-				for(int i = 0; i < players.size(); i++){// check for id uniqueness
-					if(elements[0].equals(players.get(i).id)){
-						System.out.println("id already in use");
-					}
-				}//id is valid
 				for(int i = 1; i < 6; i++){
 					if(!validateCardName(elements[i])){
 						System.out.println("Incorrect card format");
@@ -50,17 +50,31 @@ public class Input {
 						format = true;
 					}
 				}//cards are all in right format
-				if(uniqueCards(elements, players) && format == true){
-					System.out.println("cards are all unique");
+				if(uniqueCards(elements, players) && format == true && idValid == true){
 					valid = true;
-				}//cards are all unique
+					//cards are all unique and final validation
+				}else{
+					System.out.println("Please re-enter player information: ");
+				}
 			} else {
 				System.out.println("wrong number of strings");
+				System.out.println("Please re-enter player information: ");
 			}
 		}
 		System.out.println("player checks out");
 		return str;
 	}
+	
+	public boolean uniqueId(String[] elements, ArrayList<Hand> players){
+		for(int i = 0; i < players.size(); i++){// check for id uniqueness
+			if(elements[0].equals(players.get(i).id)){
+				System.out.println("id already in use");
+				return false;
+			}
+		}//id is valid
+		return true;
+	}
+	
 	public boolean uniqueCards(String[] str, ArrayList<Hand> players){
 		//first check the new set of cards
 		int pos = 1;
@@ -83,7 +97,6 @@ public class Input {
 				}
 			}
 		}
-		System.out.println("cards are unique");
 		return true;
 	}
 	

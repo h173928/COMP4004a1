@@ -1,13 +1,8 @@
 import static org.junit.Assert.*;
 
-import java.io.ByteArrayInputStream;
-import java.io.ByteArrayOutputStream;
-import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 
@@ -140,6 +135,12 @@ public class Test_Suite1 {
 		assertEquals(8, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
 		//System.out.println(Arrays.toString(y));
+		
+		x = new int[] {7, 6, 4};
+		hand = new Hand("Dwight SixDiamonds SixClubs SevenClubs SevenHearts FourSpades");
+		y = hand.determines.toArray(new Integer[hand.determines.size()]);
+		assertEquals(8, hand.getHand());
+		assertEquals(Arrays.toString(x), Arrays.toString(y));
 	}
 	
 	@Test
@@ -195,10 +196,8 @@ public class Test_Suite1 {
 		y = hand.determines.toArray(new Integer[hand.determines.size()]);
 		assertEquals(1, hand.getHand());
 		assertEquals(Arrays.toString(x), Arrays.toString(y));
-		//System.out.println(Arrays.toString(y));
-		//Game g = new Game();
 	}
-	//to run this test, comment out what is in Game:game()*************
+	//to run the following two tests, comment out what is in Game:game()*************
 	/*@Test
 	public void testGame(){
 		Game g = new Game();
@@ -218,11 +217,28 @@ public class Test_Suite1 {
 		assertEquals("Philip", g.getPlayer(2).id);
 		assertEquals("James", g.getPlayer(3).id);
 		
+	}
+	
+	@Test
+	public void testSameHands(){
+		Game g = new Game();
+		g.addPlayer("Dwight SevenClubs SevenHearts SixDiamonds SixClubs FourSpadess");
+		g.addPlayer("Din SevenSpades SevenDiamonds SixHearts SixSpades FiveClubs");
+		g.sort();
+		assertEquals("Din SevenSpades SevenDiamonds SixHearts SixSpades FiveClubs Ranked 1" ,g.getPlayer(0).toString());
+		assertEquals("Dwight", g.getPlayer(1).id);
+		g.addPlayer("DY FourDiamonds FourHearts AceDiamonds ThreeDiamonds FiveDiamonds");
+		g.addPlayer("James TwoDiamonds TwoHearts AceDiamonds ThreeDiamonds FiveDiamonds");
+		g.sort();
+		assertEquals("DY", g.getPlayer(2).id);
+		assertEquals("James", g.getPlayer(3).id);
+
+		
 	}*/
 	
 	@Test
 	public void testValidation(){//tests uniqueCards and validateCardName functions
-		//tests pair function
+		//tests card to see if card format is correct
 		Input in = new Input();
 		assertEquals(false, in.validateCardName("owkaasdf"));
 		assertEquals(false, in.validateCardName("QowLaasdf"));
@@ -231,7 +247,7 @@ public class Test_Suite1 {
 		assertEquals(false, in.validateCardName("AceHeartS"));
 		assertEquals(false, in.validateCardName("KingKingClubs"));
 		assertEquals(true, in.validateCardName("KingClubs"));
-		//System.out.println(Arrays.toString(y));
+		//check for reuse of cards
 		ArrayList<Hand> players = new ArrayList<Hand>();
 		players.add(new Hand("Philip TwoSpades JackHearts AceDiamonds TwoDiamonds FourDiamonds"));
 		players.add(new Hand("Din AceHearts KingHearts QueenHearts JackHearts TenHearts"));
@@ -241,6 +257,11 @@ public class Test_Suite1 {
 		assertEquals(false, in.uniqueCards(str2, players));
 		String[] str3 = {"Dy", "SixHearts", "SevenHearts", "AceDiamonds", "TenDiamonds", "JackClubs"};
 		assertEquals(false, in.uniqueCards(str3, players));
+		//check for reuse of id
+		String[] str4 = {"Din", "SixHearts", "SevenHearts", "AceDiamonds", "TenDiamonds", "JackClubs"};
+		assertEquals(false, in.uniqueId(str4, players));
+		String[] str5 = {"Philip", "SixHearts", "SevenHearts", "AceDiamonds", "TenDiamonds", "JackClubs"};
+		assertEquals(false, in.uniqueId(str5, players));
 	}
 
 }
