@@ -7,22 +7,28 @@ public class Input {
 		
 	}
 	public int promptNum(){
-		int n;
+		int n = 1;
 	    System.out.println("Please input number of players from 2~4 or 0 to exit:");
 	    Scanner in = new Scanner(System.in);
-	    n = in.nextInt();
+	    if(in.hasNextInt()){
+		    n = in.nextInt();
+	    }
 	    while(n < 2 || n > 4 ){
 	    	if(n == 0){
 	    		System.exit(0);
 	    	}
-	    	System.out.println("Invalid number, please enter 2~4:");
-		    n = in.nextInt();
+	    	in.nextLine();
+	    	System.out.println("Invalid input, please enter 2~4:");
+		    if(in.hasNextInt()){
+			    n = in.nextInt();
+		    }
 	    }
 		return n;
 	}
 
 	public String promptplayer(ArrayList<Hand> players){
 		boolean valid = false;
+		boolean format = false;
 		String str = null;
 	    Scanner in = new Scanner(System.in);
 		while(valid == false){
@@ -38,10 +44,13 @@ public class Input {
 				for(int i = 1; i < 6; i++){
 					if(!validateCardName(elements[i])){
 						System.out.println("Incorrect card format");
+						format = false;
 						break;
+					} else if(i == 5){
+						format = true;
 					}
 				}//cards are all in right format
-				if(uniqueCards(elements, players)){
+				if(uniqueCards(elements, players) && format == true){
 					System.out.println("cards are all unique");
 					valid = true;
 				}//cards are all unique
