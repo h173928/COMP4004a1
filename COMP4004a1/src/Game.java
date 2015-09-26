@@ -31,6 +31,9 @@ public class Game {
 					for(int j = 0; j < temp.get(x).determines.size(); j++){
 						if(temp.get(x).determines.get(j) < temp.get(i).determines.get(j)){
 							x = i;
+							break;
+						}else if(temp.get(x).determines.get(j) > temp.get(i).determines.get(j)){
+							break;
 						}
 					}
 				}

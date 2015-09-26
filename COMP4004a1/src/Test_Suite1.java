@@ -120,7 +120,7 @@ public class Test_Suite1 {
 	
 	@Test
 	public void testTwoPair(){
-		//tests pair function
+		//tests twoPairs function
 
 		int[] x = {14, 13, 2};
 		Hand hand = new Hand("DY TwoHearts KingDiamonds AceSpades KingClubs AceHearts");
@@ -145,7 +145,7 @@ public class Test_Suite1 {
 	
 	@Test
 	public void testFlush(){
-		//tests pair function
+		//tests flush() function
 
 		int[] x = {14, 13, 10, 8, 2};
 		Hand hand = new Hand("DY TwoDiamonds EightDiamonds TenDiamonds KingDiamonds AceDiamonds");
@@ -163,7 +163,7 @@ public class Test_Suite1 {
 	}
 	@Test
 	public void testStraight(){
-		//tests pair function
+		//tests straight function
 
 		int[] x = {5};
 		Hand hand = new Hand("DY TwoDiamonds FiveDiamonds AceHearts ThreeDiamonds FourDiamonds");
@@ -182,7 +182,7 @@ public class Test_Suite1 {
 
 	@Test
 	public void testStraightFlush(){
-		//tests pair function
+		//tests straightFlush function
 
 		int[] x = {5};//straight flush
 		Hand hand = new Hand("DY TwoDiamonds FiveDiamonds AceDiamonds ThreeDiamonds FourDiamonds");
@@ -232,7 +232,13 @@ public class Test_Suite1 {
 		g.sort();
 		assertEquals("DY", g.getPlayer(2).id);
 		assertEquals("James", g.getPlayer(3).id);
-
+		
+		g = new Game();
+		g.addPlayer("Dwight SevenClubs SevenHearts SixDiamonds SixClubs FourSpades");
+		g.addPlayer("Din SevenSpades SevenDiamonds FiveClubs FourHearts FourDiamonds");
+		g.sort();
+		assertEquals("Din", g.getPlayer(1).id);
+		assertEquals("Dwight", g.getPlayer(0).id);
 		
 	}*/
 	
