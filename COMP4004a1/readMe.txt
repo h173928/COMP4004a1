@@ -3,7 +3,6 @@ Student Number 100737894
 
 Github link: https://github.com/h173928/COMP4004a1.git
 
-- for each feature/requirement you have developed, the names of the corresponding test methods
 
 Tests:
 
